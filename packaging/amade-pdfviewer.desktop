@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=amadeOS PDF Viewer
+Name[de]=amadeOS PDF-Betrachter
+Name[fr]=amadeOS Visionneuse PDF
+Name[es]=amadeOS Visor de PDF
+Name[it]=amadeOS Visualizzatore PDF
+GenericName=PDF Viewer
+GenericName[de]=PDF-Betrachter
+GenericName[fr]=Visionneuse PDF
+GenericName[es]=Visor de PDF
+GenericName[it]=Visualizzatore PDF
+Comment=Read, search and print PDF documents
+Comment[de]=PDF-Dokumente lesen, durchsuchen und drucken
+Comment[fr]=Lire, rechercher et imprimer des documents PDF
+Comment[es]=Leer, buscar e imprimir documentos PDF
+Comment[it]=Leggere, cercare e stampare documenti PDF
+Icon=amade-pdfviewer
+Exec=/usr/bin/amade-pdfviewer %U
+Terminal=false
+Categories=Office;Viewer;
+MimeType=application/pdf;
+Keywords=pdf;document;viewer;reader;print;presentation;Dokument;Betrachter;
+StartupNotify=true

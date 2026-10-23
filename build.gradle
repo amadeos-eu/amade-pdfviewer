@@ -1,0 +1,155 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'eu.amadeos'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = 'eu.amadeos.apps.pdfviewer.bootstrap.AmadePdfViewerApplication'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    // Theme, Motif look, start-up and XDG helpers shared by all amadeOS applications.
+    // With ../amade-commons checked out, settings.gradle builds that checkout instead (composite build).
+    implementation 'com.github.datazuul:amade-commons:8639f15c63'
+    // Renders the pages and reads text, outline and links; pure Java, Apache 2.0.
+    implementation 'org.apache.pdfbox:pdfbox:3.0.5'
+    runtimeOnly 'ch.qos.logback:logback-classic:1.5.18'
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    // Tests compare English texts, whatever the language of the build machine.
+    systemProperty 'user.language', 'en'
+    systemProperty 'user.country', 'US'
+}
+
+jar {
+    archiveBaseName = 'amade-pdfviewer'
+    manifest {
+        attributes(
+            'Main-Class': 'eu.amadeos.apps.pdfviewer.bootstrap.AmadePdfViewerApplication',
+            'Implementation-Title': 'amade-pdfviewer',
+            'Implementation-Version': project.version
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    // Signed dependency jars would otherwise invalidate the fat jar.
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.register('deb') {
+    dependsOn jar
+    description = 'Builds a standard Debian (.deb) package for amade-pdfviewer'
+    group = 'distribution'
+
+    doLast {
+        def buildDirFile = layout.buildDirectory.get().asFile
+        def stagingDir = new File(buildDirFile, 'deb-staging')
+        delete(stagingDir)
+
+        def optDir = new File(stagingDir, 'opt/amade-pdfviewer')
+        def binDir = new File(stagingDir, 'usr/bin')
+        def appDir = new File(stagingDir, 'usr/share/applications')
+        def iconDir = new File(stagingDir, 'usr/share/icons/hicolor/48x48/apps')
+        def docDir = new File(stagingDir, 'usr/share/doc/amade-pdfviewer')
+        def debianDir = new File(stagingDir, 'DEBIAN')
+        def distDir = new File(buildDirFile, 'distributions')
+        [optDir, binDir, appDir, iconDir, docDir, debianDir, distDir]*.mkdirs()
+
+        copy {
+            from jar.archiveFile
+            into optDir
+            rename { 'amade-pdfviewer.jar' }
+        }
+
+        def launcher = new File(binDir, 'amade-pdfviewer')
+        launcher.text = """#!/bin/sh
+exec /usr/bin/java -jar /opt/amade-pdfviewer/amade-pdfviewer.jar "\$@"
+"""
+        launcher.setExecutable(true, false)
+
+        copy {
+            from 'packaging/amade-pdfviewer.desktop'
+            into appDir
+        }
+        // AppStream metadata: name, description and screenshot for amadeOS Software (and a repository's
+        // appstream-generator).
+        copy {
+            from 'packaging/eu.amadeos.apps.pdfviewer.metainfo.xml'
+            into new File(stagingDir, "usr/share/metainfo")
+        }
+        copy {
+            from 'src/main/resources/icons/amade-pdfviewer.png'
+            into iconDir
+        }
+        copy {
+            from 'LICENSE'
+            into docDir
+            rename { 'copyright' }
+        }
+
+        new File(debianDir, 'control').text = """Package: amade-pdfviewer
+Version: ${project.version}
+Section: text
+Priority: optional
+Architecture: all
+Depends: openjdk-25-jre | java-runtime (>= 25)
+Maintainer: amadeOS Project <developers@datazuul.com>
+Description: PDF viewer for amadeOS
+ Shows PDF documents page by page or as one continuous scroll, with
+ thumbnails, the table of contents, zoom, rotation, search, text selection,
+ links, printing, password-protected files and a presentation mode.
+ Remembers the last page of every document and reloads a document when
+ the file changes. Never goes online by itself.
+ Part of the amadeOS desktop.
+"""
+
+        def debFile = new File(distDir, "amade-pdfviewer_${project.version}_all.deb")
+        def process = new ProcessBuilder('dpkg-deb', '--root-owner-group', '--build',
+                stagingDir.absolutePath, debFile.absolutePath)
+                .redirectErrorStream(true)
+                .start()
+        process.inputStream.eachLine { println it }
+        if (process.waitFor() != 0) {
+            throw new GradleException('dpkg-deb failed')
+        }
+        println "[deb] Created ${debFile.absolutePath}"
+    }
+}
+
+tasks.register('installToAmadeOs') {
+    dependsOn 'deb'
+    description = 'Builds and drops the .deb package into ../amadeos/config/packages.chroot/'
+    group = 'distribution'
+
+    doLast {
+        def targetDir = file('../amadeos/config/packages.chroot')
+        targetDir.mkdirs()
+        def debFile = new File(layout.buildDirectory.get().asFile, "distributions/amade-pdfviewer_${project.version}_all.deb")
+        copy {
+            from debFile
+            into targetDir
+        }
+        println "[installToAmadeOs] Copied ${debFile.name} to ${targetDir.absolutePath}"
+    }
+}

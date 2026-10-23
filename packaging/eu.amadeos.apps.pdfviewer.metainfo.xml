@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AppStream metadata of amade-pdfviewer, installed as /usr/share/metainfo/eu.amadeos.apps.pdfviewer.metainfo.xml.
+     amadeOS Software shows it for the installed package; a repository's appstream-generator reads it too. -->
+<component type="desktop-application">
+  <id>eu.amadeos.apps.pdfviewer</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>EUPL-1.2</project_license>
+
+  <name>amadeOS PDF Viewer</name>
+  <name xml:lang="de">amadeOS PDF-Betrachter</name>
+  <name xml:lang="fr">amadeOS Visionneuse PDF</name>
+  <name xml:lang="es">amadeOS Visor de PDF</name>
+  <name xml:lang="it">amadeOS Visualizzatore PDF</name>
+
+  <summary>Read, search and print PDF documents</summary>
+  <summary xml:lang="de">PDF-Dokumente lesen, durchsuchen und drucken</summary>
+  <summary xml:lang="fr">Lire, rechercher et imprimer des documents PDF</summary>
+  <summary xml:lang="es">Leer, buscar e imprimir documentos PDF</summary>
+  <summary xml:lang="it">Leggere, cercare e stampare documenti PDF</summary>
+
+  <description>
+    <p>amade-pdfviewer is the PDF viewer of the amadeOS desktop. It shows documents page by page or as one continuous scroll, remembers where you stopped in every document and never goes online by itself.</p>
+    <p xml:lang="de">amade-pdfviewer ist der PDF-Betrachter des amadeOS-Desktops. Er zeigt Dokumente Seite für Seite oder fortlaufend, merkt sich in jedem Dokument, wo Sie aufgehört haben, und geht nie von sich aus ins Internet.</p>
+    <p xml:lang="fr">amade-pdfviewer est la visionneuse PDF du bureau amadeOS. Elle affiche les documents page par page ou en continu, retient l’endroit où vous vous êtes arrêté dans chaque document et ne se connecte jamais d’elle-même à Internet.</p>
+    <p xml:lang="es">amade-pdfviewer es el visor de PDF del escritorio amadeOS. Muestra los documentos página a página o de forma continua, recuerda dónde se quedó en cada documento y nunca se conecta a Internet por su cuenta.</p>
+    <p xml:lang="it">amade-pdfviewer è il visualizzatore PDF del desktop amadeOS. Mostra i documenti pagina per pagina o in modo continuo, ricorda dove ci si è fermati in ogni documento e non si collega mai a Internet da solo.</p>
+    <ul>
+      <li>Continuous, single page and two pages view; zoom, fit page, fit width and rotation</li>
+      <li xml:lang="de">Ansichten fortlaufend, Einzelseite und Doppelseite; Zoom, ganze Seite, Seitenbreite und Drehen</li>
+      <li xml:lang="fr">Affichage continu, page unique et double page ; zoom, page entière, largeur de page et rotation</li>
+      <li xml:lang="es">Vista continua, de una página y de dos páginas; zoom, página entera, ancho de página y giro</li>
+      <li xml:lang="it">Vista continua, pagina singola e due pagine; zoom, pagina intera, larghezza pagina e rotazione</li>
+      <li>Sidebar with page thumbnails and the table of contents</li>
+      <li xml:lang="de">Seitenleiste mit Miniaturen der Seiten und dem Inhaltsverzeichnis</li>
+      <li xml:lang="fr">Panneau latéral avec les miniatures des pages et la table des matières</li>
+      <li xml:lang="es">Panel lateral con miniaturas de las páginas y el índice</li>
+      <li xml:lang="it">Barra laterale con le miniature delle pagine e l’indice</li>
+      <li>Search with highlighted hits, selecting and copying text, links inside the document and to the web</li>
+      <li xml:lang="de">Suche mit markierten Treffern, Text markieren und kopieren, Verweise im Dokument und ins Web</li>
+      <li xml:lang="fr">Recherche avec résultats surlignés, sélection et copie du texte, liens dans le document et vers le web</li>
+      <li xml:lang="es">Búsqueda con resultados resaltados, seleccionar y copiar texto, enlaces dentro del documento y a la web</li>
+      <li xml:lang="it">Ricerca con risultati evidenziati, selezione e copia del testo, collegamenti nel documento e verso il web</li>
+      <li>Printing, password-protected documents, document properties and a full-screen presentation mode</li>
+      <li xml:lang="de">Drucken, passwortgeschützte Dokumente, Dokumenteigenschaften und ein Präsentationsmodus im Vollbild</li>
+      <li xml:lang="fr">Impression, documents protégés par mot de passe, propriétés du document et mode présentation plein écran</li>
+      <li xml:lang="es">Impresión, documentos protegidos con contraseña, propiedades del documento y modo de presentación a pantalla completa</li>
+      <li xml:lang="it">Stampa, documenti protetti da password, proprietà del documento e modalità presentazione a schermo intero</li>
+      <li>Reloads a document by itself when the file changes, keeping the page</li>
+      <li xml:lang="de">Lädt ein Dokument selbst neu, wenn sich die Datei ändert, und bleibt auf der Seite</li>
+      <li xml:lang="fr">Recharge un document de lui-même quand le fichier change, en restant sur la page</li>
+      <li xml:lang="es">Vuelve a cargar un documento por sí solo cuando el archivo cambia, sin perder la página</li>
+      <li xml:lang="it">Ricarica da solo un documento quando il file cambia, restando sulla pagina</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">amade-pdfviewer.desktop</launchable>
+  <icon type="stock">amade-pdfviewer</icon>
+  <categories>
+    <category>Office</category>
+    <category>Viewer</category>
+  </categories>
+  <url type="homepage">https://github.com/datazuul/amade-pdfviewer</url>
+  <url type="bugtracker">https://github.com/datazuul/amade-pdfviewer/issues</url>
+  <developer id="eu.amadeos">
+    <name>amadeOS Project</name>
+  </developer>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>A document with page thumbnails and a search</caption>
+      <caption xml:lang="de">Ein Dokument mit Seitenminiaturen und einer Suche</caption>
+      <caption xml:lang="fr">Un document avec les miniatures des pages et une recherche</caption>
+      <caption xml:lang="es">Un documento con miniaturas de las páginas y una búsqueda</caption>
+      <caption xml:lang="it">Un documento con le miniature delle pagine e una ricerca</caption>
+      <image>https://raw.githubusercontent.com/datazuul/amade-pdfviewer/main/docs/screenshots/amade-pdfviewer.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Two pages side by side with the table of contents</caption>
+      <caption xml:lang="de">Doppelseite mit dem Inhaltsverzeichnis</caption>
+      <caption xml:lang="fr">Double page avec la table des matières</caption>
+      <caption xml:lang="es">Dos páginas con el índice</caption>
+      <caption xml:lang="it">Due pagine affiancate con l’indice</caption>
+      <image>https://raw.githubusercontent.com/datazuul/amade-pdfviewer/main/docs/screenshots/amade-pdfviewer-contents.png</image>
+    </screenshot>
+  </screenshots>
+
+  <provides>
+    <binary>amade-pdfviewer</binary>
+    <mediatype>application/pdf</mediatype>
+  </provides>
+  <content_rating type="oars-1.1"/>
+</component>
