@@ -261,6 +261,7 @@ class MainPresenterTest {
         assertEquals("3 at 0.5", view.scrolled);
     }
 
+    // --8<-- [start:reload-test]
     @Test
     void reloadKeepsPageZoomAndSearch() throws Exception {
         Path file = TestPdfs.pages(dir, "doc.pdf", 5);
@@ -280,6 +281,7 @@ class MainPresenterTest {
         assertEquals("Reloaded: the file was changed.", view.status);
         assertEquals(1, view.search.hits().size());
     }
+    // --8<-- [end:reload-test]
 
     @Test
     void zoomStepsFromTheShownFactorAndTypedZooms() throws Exception {

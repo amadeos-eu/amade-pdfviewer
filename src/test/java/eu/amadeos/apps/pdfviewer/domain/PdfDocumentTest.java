@@ -79,6 +79,7 @@ class PdfDocumentTest {
         }
     }
 
+    // --8<-- [start:tiles-test]
     @Test
     void tilesMatchTheWholePicture() throws Exception {
         try (PdfDocument doc = PdfDocument.open(TestPdfs.rotated(dir, 0), null)) {
@@ -93,6 +94,7 @@ class PdfDocumentTest {
             assertTrue(differences < 20, "differences: " + differences);
         }
     }
+    // --8<-- [end:tiles-test]
 
     /** Nearly all dark pixels of the picture lie in the boxes, and every box holds some. */
     private static void assertInk(BufferedImage image, List<Rectangle2D> boxes, double scale) {
