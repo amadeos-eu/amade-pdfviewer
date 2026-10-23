@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DocumentThreadTest {
+    // --8<-- [start:thread-test]
     @Test
     void visiblePagesBeforeSearchAndCancelledJobsDropped() throws Exception {
         List<String> done = new CopyOnWriteArrayList<>();
@@ -33,6 +34,7 @@ class DocumentThreadTest {
             assertEquals(List.of("first", "visible", "ahead", "search"), done);
         }
     }
+    // --8<-- [end:thread-test]
 
     @Test
     void failuresReachTheErrorHandler() throws Exception {
