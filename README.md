@@ -1,6 +1,6 @@
 # amade-pdfviewer
 
-**amade-pdfviewer** is the PDF viewer of the [amadeOS](https://github.com/datazuul/amadeos) desktop: pages, thumbnails, the table of contents, search, text selection, printing and a presentation mode in one Motif window. Built like the other amadeOS applications, with [Apache PDFBox](https://pdfbox.apache.org/) for reading and drawing the pages.
+**amade-pdfviewer** is the PDF viewer of the [amadeOS](https://github.com/amadeos-eu/amadeos) desktop: pages, thumbnails, the table of contents, search, text selection, printing and a presentation mode in one Motif window. Built like the other amadeOS applications, with [Apache PDFBox](https://pdfbox.apache.org/) for reading and drawing the pages.
 
 ![License](https://img.shields.io/badge/license-EUPL--1.2-blue)
 ![Java](https://img.shields.io/badge/Java-25-orange)
@@ -25,7 +25,7 @@
 - **Reading position**: each file reopens at its last page, zoom and rotation (the last 300 files, in `~/.config/amadeos/pdfviewer/positions.properties`).
 - **Reload**: when the file changes on disk, for example because LaTeX wrote it again, the viewer reloads it and keeps the position. Ctrl+R reloads by hand.
 - Five languages (English, Deutsch, Français, Español, Italiano), following the amadeOS desktop language; *Options → Language* overrides it.
-- Theme colours and Motif look from [amade-commons](https://github.com/datazuul/amade-commons).
+- Theme colours and Motif look from [amade-commons](https://github.com/amadeos-eu/amade-commons).
 
 ## Architecture
 

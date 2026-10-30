@@ -59,8 +59,8 @@
     <category>Office</category>
     <category>Viewer</category>
   </categories>
-  <url type="homepage">https://github.com/datazuul/amade-pdfviewer</url>
-  <url type="bugtracker">https://github.com/datazuul/amade-pdfviewer/issues</url>
+  <url type="homepage">https://github.com/amadeos-eu/amade-pdfviewer</url>
+  <url type="bugtracker">https://github.com/amadeos-eu/amade-pdfviewer/issues</url>
   <developer id="eu.amadeos">
     <name>amadeOS Project</name>
   </developer>
@@ -72,7 +72,7 @@
       <caption xml:lang="fr">Un document avec les miniatures des pages et une recherche</caption>
       <caption xml:lang="es">Un documento con miniaturas de las páginas y una búsqueda</caption>
       <caption xml:lang="it">Un documento con le miniature delle pagine e una ricerca</caption>
-      <image>https://raw.githubusercontent.com/datazuul/amade-pdfviewer/main/docs/screenshots/amade-pdfviewer.png</image>
+      <image>https://raw.githubusercontent.com/amadeos-eu/amade-pdfviewer/main/docs/screenshots/amade-pdfviewer.png</image>
     </screenshot>
     <screenshot>
       <caption>Two pages side by side with the table of contents</caption>
@@ -80,7 +80,7 @@
       <caption xml:lang="fr">Double page avec la table des matières</caption>
       <caption xml:lang="es">Dos páginas con el índice</caption>
       <caption xml:lang="it">Due pagine affiancate con l’indice</caption>
-      <image>https://raw.githubusercontent.com/datazuul/amade-pdfviewer/main/docs/screenshots/amade-pdfviewer-contents.png</image>
+      <image>https://raw.githubusercontent.com/amadeos-eu/amade-pdfviewer/main/docs/screenshots/amade-pdfviewer-contents.png</image>
     </screenshot>
   </screenshots>
 
