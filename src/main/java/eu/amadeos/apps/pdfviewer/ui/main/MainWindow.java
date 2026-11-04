@@ -494,7 +494,7 @@ public final class MainWindow extends JFrame implements MainView {
                     + (state.running() ? "…" : ""));
         }
         searchLabel.setForeground(state.active() && !state.running() && state.hits().isEmpty()
-                ? new Color(0xb00000) : AmadeUI.theme().textActive());
+                ? problemColour() : AmadeUI.theme().textActive());
     }
 
     @Override
@@ -567,7 +567,7 @@ public final class MainWindow extends JFrame implements MainView {
         panel.add(new JLabel(msg.format("dialog.password.text", fileName)), BorderLayout.NORTH);
         if (wrong) {
             JLabel again = new JLabel(msg.get("dialog.password.wrong"));
-            again.setForeground(new Color(0xb00000));
+            again.setForeground(problemColour());
             panel.add(again, BorderLayout.CENTER);
         }
         JPanel row = new JPanel(new BorderLayout(6, 0));
@@ -848,5 +848,11 @@ public final class MainWindow extends JFrame implements MainView {
             if (child instanceof JToggleButton b && "tool.sidebar".equals(b.getName())) return b;
         }
         return null;
+    }
+
+    /** Red for a problem, light enough to read on a dark palette. */
+    static Color problemColour() {
+        return eu.amadeos.commons.theme.DesktopTheme.isDark(AmadeUI.theme().base())
+                ? new Color(0xFF, 0x7B, 0x72) : new Color(0xB0, 0x00, 0x00);
     }
 }
