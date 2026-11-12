@@ -87,8 +87,12 @@ tasks.register('deb') {
         }
 
         def launcher = new File(binDir, 'amade-pdfviewer')
+        // The options all amadeOS programs share (heap, garbage collector) come first from the argument file
+        // amadeos-session installs; the options after it win over them.
         launcher.text = """#!/bin/sh
-exec /usr/bin/java -jar /opt/amade-pdfviewer/amade-pdfviewer.jar "\$@"
+OPTIONS=/etc/amadeos/java/app.options
+[ -r "\$OPTIONS" ] || OPTIONS=/dev/null
+exec /usr/bin/java "@\$OPTIONS" -Xmx512m -jar /opt/amade-pdfviewer/amade-pdfviewer.jar "\$@"
 """
         launcher.setExecutable(true, false)
 
@@ -117,7 +121,7 @@ Version: ${debVersion}
 Section: text
 Priority: optional
 Architecture: all
-Depends: openjdk-25-jre | java-runtime (>= 25)
+Depends: openjdk-25-jre | java-runtime (>= 25), amadeos-java-options
 Maintainer: amadeOS Project <developers@datazuul.com>
 Description: PDF viewer for amadeOS
  Shows PDF documents page by page or as one continuous scroll, with
